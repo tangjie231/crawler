@@ -25,7 +25,21 @@ def post_req(url,data=None,headers=None,cookies=None):
     rs = s.post(url, data=data, headers=headers, cookies=cookies)
     return rs
 
-def get_req(url):
+def get_req(url,data=None,headers=None,cookies=None):
     s=requests.session()
-    rs = s.get(url)
+    rs = s.get(url, data=data, headers=headers, cookies=cookies)
     return rs
+
+def get_cookie_from_str(cookie_str):
+    val_list = cookie_str.split(';')
+    d = {}
+
+    for curr in val_list:
+        key_val = curr.split("=")
+        d[key_val[0]] = key_val[1]
+
+    return d
+
+def get_company_id(rs):
+    rs = json.loads(json_str)
+    return rs['data'][0]['id']
