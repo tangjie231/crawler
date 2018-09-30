@@ -23,11 +23,13 @@ def print_cookie_vals(cookie_obj):
 def post_req(url,data=None,headers=None,cookies=None):
     s=requests.session()
     rs = s.post(url, data=data, headers=headers, cookies=cookies)
+    rs.encoding = 'uft-8'
     return rs
 
-def get_req(url,data=None,headers=None,cookies=None):
+def get_req(url,params=None,headers=None,cookies=None):
     s=requests.session()
-    rs = s.get(url, data=data, headers=headers, cookies=cookies)
+    rs = s.get(url, params=params, headers=headers, cookies=cookies)
+    rs.encoding = 'uft-8'
     return rs
 
 def get_cookie_from_str(cookie_str):
@@ -43,3 +45,21 @@ def get_cookie_from_str(cookie_str):
 def get_company_id(rs):
     rs = json.loads(json_str)
     return rs['data'][0]['id']
+
+def parse_header_and_cookie(headers_str):
+    header_list = headers_str.splitlines()
+
+    headers = {}
+    cookie = {}
+
+    for curr in header_list:
+        key_val = curr.split(':')
+        if len(key_val) == 1:
+            continue
+
+        if key_val[0] == 'Cookie':
+            cookie = get_cookie_from_str(key_val[1])
+        else:
+            headers[key_val[0]] = key_val[1].strip()
+    return headers,cookie
+
