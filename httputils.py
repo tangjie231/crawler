@@ -42,9 +42,6 @@ def get_cookie_from_str(cookie_str):
 
     return d
 
-def get_company_id(rs):
-    rs = json.loads(json_str)
-    return rs['data'][0]['id']
 
 def parse_header_and_cookie(headers_str):
     header_list = headers_str.splitlines()

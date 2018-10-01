@@ -3,6 +3,7 @@ import excelutils as execel
 import time
 from lxml import etree
 import os
+import requests
 
 headers_str = '''
 Host: www.tianyancha.com
@@ -36,6 +37,9 @@ for company in company_list:
 
     if not os.path.exists(company_file_prefix+user_id+'.html'):
         reqs = http.get_req(req_url, params=params, headers=headers, cookies=cookies)
+        if reqs.status_code != requests.codes.ok:
+            break
+
         with open(company_file_prefix+user_id+'.html','w',encoding='utf-8') as f:
             text = reqs.text
             f.writelines(text)
@@ -50,6 +54,9 @@ for company in company_list:
 
                 if not os.path.exists(company_detail_file_prefix + user_id + '.html'):
                     reqs = http.get_req(href_, headers=headers, cookies=cookies)
+                    if reqs.status_code != requests.codes.ok:
+                        break
+
                     text = reqs.text
                     detail_f = open(company_detail_file_prefix + user_id + '.html', mode='w', encoding='utf-8')
                     detail_f.writelines(text)
@@ -67,6 +74,9 @@ for company in company_list:
                     href_ = rs[0].attrib['href']
                     if not os.path.exists(company_detail_file_prefix + user_id + '.html'):
                         reqs = http.get_req(href_, headers=headers, cookies=cookies)
+                        if reqs.status_code != requests.codes.ok:
+                            break
+
                         text = reqs.text
                         detail_f = open(company_detail_file_prefix + user_id + '.html', mode='w', encoding='utf-8')
                         detail_f.writelines(text)
