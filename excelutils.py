@@ -47,10 +47,22 @@ def parse_company(file_path, company_info):
             if len(rs) > 0:
                 company_info['reg_capital'] = rs[0].text
 
-            print('公司信息:', company_info)
         except Exception as e:
             print('ERROR:', file_path)
             print("error: {0}".format(e))
+
+def parse_company_detail(file_path, company_info):
+    if os.path.exists(file_path):
+        try:
+            tree = etree.HTML(open(file_path, encoding='utf-8', mode='r').read())
+
+            rs = tree.xpath('//td[contains(text(),"统一信用代码")]/following-sibling::td[1]')
+            if len(rs) > 0:
+                company_info['company_code'] = rs[0].text
+        except Exception as e:
+            print('ERROR:', file_path)
+            print("error: {0}".format(e))
+
 
 
 def write_to_excel_file(file_path, company_list):
@@ -81,10 +93,20 @@ def write_to_excel_file(file_path, company_list):
 
 
 if __name__ == '__main__':
-    path = 'E:/companies/'
-    company_list = read_excel(r'd:\test_company.xlsx')
+    main_path_prefix = 'E:/companies/'
+    detail_path_prefix = 'E:/companies/details/'
+    company_file_path = r'd:\第二次撞库数据.xlsx'
+
+    company_list = read_excel(company_file_path)
     for company in company_list:
-        file_path = path + company['user_id'] + '.html'
-        parse_company(file_path, company)
+        user_id = company['user_id']
+
+        main_file_path = main_path_prefix + user_id + '.html'
+        parse_company(main_file_path, company)
+
+        detail_file_path = detail_path_prefix + user_id + '.html'
+        parse_company_detail(detail_file_path,company)
+
+
 
     write_to_excel_file('d:/rs.xlsx', company_list)
