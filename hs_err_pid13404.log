@@ -1,0 +1,157 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=13404, tid=0x0000000000000a04
+#
+# JRE version:  (8.0_152-b15) (build )
+# Java VM: OpenJDK 64-Bit Server VM (25.152-b15 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000055de000):  JavaThread "Unknown thread" [_thread_in_vm, id=2564, stack(0x0000000004fe0000,0x00000000050e0000)]
+
+Stack: [0x0000000004fe0000,0x00000000050e0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000055de000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=2564, stack(0x0000000004fe0000,0x00000000050e0000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 35840K, used 614K [0x00000000d8100000, 0x00000000da900000, 0x0000000100000000)
+  eden space 30720K, 2% used [0x00000000d8100000,0x00000000d81999a8,0x00000000d9f00000)
+  from space 5120K, 0% used [0x00000000da400000,0x00000000da400000,0x00000000da900000)
+  to   space 5120K, 0% used [0x00000000d9f00000,0x00000000d9f00000,0x00000000da400000)
+ ParOldGen       total 81920K, used 0K [0x0000000088200000, 0x000000008d200000, 0x00000000d8100000)
+  object space 81920K, 0% used [0x0000000088200000,0x0000000088200000,0x000000008d200000)
+ Metaspace       used 772K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 73K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x00000000149a0000,0x0000000014d60000] byte_map_base: 0x000000001455f000
+
+Marking Bits: (ParMarkBitMap*) 0x000000005c9c5970
+ Begin Bits: [0x00000000153e0000, 0x00000000171d8000)
+ End Bits:   [0x00000000171d8000, 0x0000000018fd0000)
+
+Polling page: 0x0000000003780000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x00000000055e0000, 0x0000000005850000, 0x00000000145e0000]
+ total_blobs=57 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.034 loading class java/lang/Short
+Event: 0.034 loading class java/lang/Short done
+Event: 0.034 loading class java/lang/Integer
+Event: 0.034 loading class java/lang/Integer done
+Event: 0.034 loading class java/lang/Long
+Event: 0.034 loading class java/lang/Long done
+Event: 0.035 loading class java/lang/NullPointerException
+Event: 0.035 loading class java/lang/NullPointerException done
+Event: 0.035 loading class java/lang/ArithmeticException
+Event: 0.035 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff786e70000 - 0x00007ff786ea1000 	D:\dev\PyCharm 2017.3.6\jre64\bin\java.exe
+0x00007ffd832b0000 - 0x00007ffd83490000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffd802b0000 - 0x00007ffd8035e000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffd7ed40000 - 0x00007ffd7efa6000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffd7fe20000 - 0x00007ffd7fec1000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffd82fb0000 - 0x00007ffd8304d000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffd82d20000 - 0x00007ffd82d7b000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffd80360000 - 0x00007ffd8047f000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffd830d0000 - 0x00007ffd8325f000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffd7f330000 - 0x00007ffd7f350000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffd81be0000 - 0x00007ffd81c08000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffd7efe0000 - 0x00007ffd7f173000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffd7f1e0000 - 0x00007ffd7f27b000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffd7fcd0000 - 0x00007ffd7fdc6000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffd63a60000 - 0x00007ffd63cc9000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.16299.461_none_15c7d38293659f66\COMCTL32.dll
+0x00007ffd7fed0000 - 0x00007ffd801d8000 	C:\WINDOWS\System32\combase.dll
+0x00007ffd7ec10000 - 0x00007ffd7ec82000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffd80520000 - 0x00007ffd8054d000 	C:\WINDOWS\System32\IMM32.DLL
+0x000000005d930000 - 0x000000005da02000 	D:\dev\PyCharm 2017.3.6\jre64\bin\msvcr100.dll
+0x000000005c200000 - 0x000000005ca40000 	D:\dev\PyCharm 2017.3.6\jre64\bin\server\jvm.dll
+0x00007ffd7efb0000 - 0x00007ffd7efd3000 	C:\WINDOWS\System32\WINMM.dll
+0x00007ffd7eba0000 - 0x00007ffd7ebca000 	C:\WINDOWS\System32\WINMMBASE.dll
+0x00007ffd7fdd0000 - 0x00007ffd7fe1a000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00007ffd822c0000 - 0x00007ffd822c8000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffd73a20000 - 0x00007ffd73a29000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffd83050000 - 0x00007ffd830bc000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffd762e0000 - 0x00007ffd762ea000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffd7af90000 - 0x00007ffd7af9f000 	D:\dev\PyCharm 2017.3.6\jre64\bin\verify.dll
+0x00007ffd793b0000 - 0x00007ffd793d9000 	D:\dev\PyCharm 2017.3.6\jre64\bin\java.dll
+0x00007ffd75d80000 - 0x00007ffd75d96000 	D:\dev\PyCharm 2017.3.6\jre64\bin\zip.dll
+
+VM Arguments:
+java_command: org.jetbrains.git4idea.http.GitAskPassApp Password for 'https://280830926@qq.com@github.com': 
+java_class_path (initial): D:/dev/PyCharm 2017.3.6/plugins/git4idea/lib/git4idea-rt.jar;D:/dev/PyCharm 2017.3.6/lib/xmlrpc-2.0.jar;D:/dev/PyCharm 2017.3.6/lib/commons-codec-1.9.jar;D:/dev/PyCharm 2017.3.6/lib/util.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=E:\software\jdk
+CLASSPATH=E:\software\jdk\lib\dt.jar;E:\software\jdk\lib\tools.jar
+PATH=D:\dev\Git\mingw64/libexec/git-core;D:\dev\Git\mingw64\bin;D:\dev\Git\usr\bin;C:\Users\daojia\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;D:\dev\Git\cmd;E:\software\node\;E:\software\jdk\bin;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\dev\gradle-4.6\bin;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\software\Microsoft VS Code\bin;C:\Users\daojia\AppData\Roaming\npm;C:\Users\daojia\AppData\Local\Microsoft\WindowsApps;E:\software\Fiddler;D:\dev\anaconda3;D:\dev\anaconda3\Scripts;D:\dev\anaconda3\Library\bin;
+USERNAME=daojia
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 78 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 16299 (10.0.16299.431)
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 7851832k(920976k free), swap 16941364k(4380k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.152-b15) for windows-amd64 JRE (1.8.0_152-release-1024-b15), built on Feb 12 2018 14:08:48 by "builduser" with MS VC++ 10.0 (VS2010)
+
+time: Sun Sep 30 18:18:10 2018
+elapsed time: 0 seconds (0d 0h 0m 0s)
+
