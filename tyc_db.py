@@ -1,5 +1,5 @@
 import sqlite3
-import excelutils as exutils
+import tyc_parse as parse
 import os
 
 
@@ -50,6 +50,10 @@ class DbUtil:
         cursor.execute(update_sql,
                        (company['company_code'], company['legal_name'], company['reg_capital'], company['user_id']))
 
+    def query_all_company(self,cursor):
+        cursor.execute('select * from t_company_info order by sort_no')
+        return cursor.fetchall()
+
 
 if __name__ == '__main__':
     """
@@ -74,8 +78,8 @@ if __name__ == '__main__':
     print(rs)
     """
 
-    main_path_prefix = 'E:/companies/'
-    detail_path_prefix = 'E:/companies/details/'
+    main_path_prefix = '/Users/tangjie/Downloads/companies/'
+    detail_path_prefix = '/Users/tangjie/Downloads/companies/details/'
 
     dbUtil = DbUtil()
     conn, cursor = dbUtil.get_conn_and_cursor()
@@ -91,10 +95,10 @@ if __name__ == '__main__':
         main_file_path = main_path_prefix + user_id + '.html'
         if not os.path.exists(main_file_path):
             break
-        exutils.parse_company(main_file_path, company)
+        parse.parse_company(main_file_path, company)
 
         detail_file_path = detail_path_prefix + user_id + '.html'
-        exutils.parse_company_detail(detail_file_path, company)
+        parse.parse_company_detail(detail_file_path, company)
 
         dbUtil.modify_company_info(company, cursor)
         print('处理完成：', company_tuple[2])
