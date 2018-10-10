@@ -74,4 +74,4 @@ if __name__ == '__main__':
             'reg_capital': company_tuple[5],
         })
 
-    write_to_excel_file('/Users/tangjie/Downloads/rs.xlsx', company_list)
+    write_to_excel_file('e:/rs.xlsx', company_list)

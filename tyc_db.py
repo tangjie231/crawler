@@ -1,6 +1,7 @@
 import sqlite3
 import tyc_parse as parse
 import os
+import platform
 
 
 class DbUtil:
@@ -38,7 +39,15 @@ class DbUtil:
                         ))
 
     def query_all_not_deal_company(self, cursor):
-        cursor.execute('select * from t_company_info where is_deal=0 order by sort_no')
+        cursor.execute('select * from t_company_info where is_deal=0 order by sort_no limit 150')
+        return cursor.fetchall()
+
+    def query_all_not_deal_company_with_page(self, cursor, page):
+        cursor.execute('select * from t_company_info where is_deal=0 order by sort_no limit ?,30', (page * 30,))
+        return cursor.fetchall()
+
+    def query_all_not_main_page_company(self, cursor):
+        cursor.execute('select * from t_company_info where main_flag=0 order by sort_no limit 150')
         return cursor.fetchall()
 
     def get_company_info_by_user_id(self, user_id, cursor):
@@ -46,13 +55,21 @@ class DbUtil:
         return cursor.fetchall()
 
     def modify_company_info(self, company, cursor):
-        update_sql = 'UPDATE t_company_info set company_code = ?,legal_name = ?,reg_capital = ?,is_deal=1 WHERE user_id = ? and is_deal = 0'
+        update_sql = 'UPDATE t_company_info set company_code = ?,legal_name = ?,reg_capital = ?,is_deal=1,main_flag=1,detail_flag=1 WHERE user_id = ? and is_deal = 0'
         cursor.execute(update_sql,
                        (company['company_code'], company['legal_name'], company['reg_capital'], company['user_id']))
 
-    def query_all_company(self,cursor):
+    def query_all_company(self, cursor):
         cursor.execute('select * from t_company_info order by sort_no')
         return cursor.fetchall()
+
+    def modify_company_main_flag(self, user_id, cursor):
+        update_sql = 'UPDATE t_company_info set main_flag = 1 WHERE user_id = ? and main_flag = 0'
+        cursor.execute(update_sql, (user_id,))
+
+    def modify_company_detail_flag(self, user_id, cursor):
+        update_sql = 'UPDATE t_company_info set detail_flag = 1 WHERE user_id = ? and detail_flag = 0'
+        cursor.execute(update_sql, (user_id,))
 
 
 if __name__ == '__main__':
@@ -80,6 +97,9 @@ if __name__ == '__main__':
 
     main_path_prefix = '/Users/tangjie/Downloads/companies/'
     detail_path_prefix = '/Users/tangjie/Downloads/companies/details/'
+    if platform.system() == 'Windows':
+        main_path_prefix = 'E:/companies/'
+        detail_path_prefix = 'E:/companies/details/'
 
     dbUtil = DbUtil()
     conn, cursor = dbUtil.get_conn_and_cursor()
